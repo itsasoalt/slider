@@ -1,2 +1,1 @@
-# slider
-Fabulous slider exercise
+😰📝💻✨😍
