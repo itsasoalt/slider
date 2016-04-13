@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$('#slide-1').show();
 	$('#nav-1').addClass("active-cd");
 
-	$('.next').click(function() {
+	function siguienteSlide() {
 		var actual = $('.slides li:visible');
 		var siguiente = actual.next();
 		var actualfull = $('.active-cd');
@@ -13,12 +13,24 @@ $(document).ready(function() {
 			nextfull = $('#nav-1');
 		}
 
-		actual.hide();
-		siguiente.show();
+		actual.fadeOut();
+		siguiente.fadeIn();
 		actualfull.removeClass("active-cd");
 		nextfull.addClass("active-cd");
 
+	};
+
+	var intervalo = setInterval(siguienteSlide, 2000);
+
+	$('.slideshow').mouseenter(function() {
+		clearInterval(intervalo);
 	});
+	$('.slideshow').mouseleave(function() {
+		intervalo = setInterval(siguienteSlide, 2000);
+	});
+	
+
+	$('.next').click(siguienteSlide);
 
 	$('.prev').click(function() {
 		var actual = $('.slides li:visible');
@@ -31,8 +43,8 @@ $(document).ready(function() {
 			prevfull = $('#nav-4');
 		}
 
-		actual.hide();
-		anterior.show();
+		actual.fadeOut();
+		anterior.fadeIn();
 		actualfull.removeClass("active-cd");
 		prevfull.addClass("active-cd");
 	});
